@@ -17,21 +17,21 @@ public class FilePathSearch {
     }
 
     public List<String> searchDir(String dir,char ch) {
-        System.out.println("ALL DIRECTORIES and FILES ONLY NAME");
+//        System.out.println("ALL DIRECTORIES and FILES ONLY NAME");
         File path = new File(dir);
         String[] allObj = path.list();
 
         for (String it : allObj) {
             try {
              //   if (it.endsWith("exe")) {
-                    System.out.println("Execute FIle " + it);
+               //     System.out.println("Execute FIle " + it);
                     stringList.add(it);
                // } else {
-                    System.out.println(" " + it);
+            //        System.out.println(" " + it);
                     stringList.add(it);
                 //}
             }catch(Exception e){
-                System.out.println("Error "+e);
+        //        System.out.println("Error "+e);
             }
         }
         return stringList;
@@ -39,21 +39,22 @@ public class FilePathSearch {
 
     public List<String> searchDir(String dir, int n) {
         File path = new File(dir);
-        String[] files = path.list();
+        OnlyExt onlyExt = new OnlyExt("exe");
+        String[] files = path.list(onlyExt);
 
-        System.out.println("ALL DIRECTORIES and FILES ABSOLUTELY PATHS ");
+    //    System.out.println("ALL DIRECTORIES and FILES ABSOLUTELY PATHS ");
 
         for (String it : files) {
             try {
               //  if (it.isDirectory()) {
-                    System.out.println("<DIR> " + it);
+     //               System.out.println("<DIR> " + it);
                     fileList.add(it.toString());
                 //} else {
                    // System.out.println("<File> " + it);
                  //   fileList.add(it.toString());
                // }
             }catch(Exception e){
-                System.out.println("Error +"+e);
+              //  System.out.println("Error +"+e);
             }
         }
         return fileList;
@@ -70,7 +71,7 @@ public class FilePathSearch {
                     try {
                        searchDir(it.toString());
                     }catch (Exception e){
-                        System.out.println("Error "+e);
+              //          System.out.println("Error "+e);
                     }
                 }
                 if(it.getName().endsWith("exe"))
@@ -88,20 +89,22 @@ public class FilePathSearch {
     }
 
 
-    public int searchFile(String dir ) throws IOException {
+    public List<String> searchFile(String dir ) throws IOException {
         String ext = "exe";
         File path = new File(dir);
         File[] files = path.listFiles();
+
         for(File it : files){
 
             if(it.isDirectory())
                 try {
                     searchFile(it.toString());
                 }catch(Exception e){
-                    System.out.println("Error "+ e);
+          //          System.out.println("Error "+ e);
                 }
             if(it.getName().endsWith(ext) && !(it.getName().startsWith("uninstal") || (it.getParent().endsWith("updater")) || (it.getName().startsWith("updater") ))) {
-                System.out.println(it);
+               // System.out.println(it);
+                stringList.add(it.toString());
                 //  if(flag > 2) break;
                 //    Process process = Runtime.getRuntime().exec(it.getAbsolutePath());
 
@@ -109,12 +112,12 @@ public class FilePathSearch {
 
         }
         flag++;
-        return flag;
+        return stringList;
     }
 
-    public static void main(String[] args) {
-        for(String it :  new FilePathSearch().searchDir("C:\\Program Files (x86)\\"+"Adobe")) {
-            System.out.println(it);
-        }
-    }
+  /*  public static void main(String[] args) {
+       // for(String it :  new FilePathSearch().searchDir("C:\\Program Files (x86)\\"+"Adobe")) {
+      //      System.out.println(it);
+   //     }
+    }*/
 }

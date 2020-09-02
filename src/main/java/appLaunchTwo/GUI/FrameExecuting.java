@@ -4,6 +4,7 @@ import appLaunchTwo.Classes.Program;
 import appLaunchTwo.Logic.HandlerProgram;
 import appLaunchTwo.Logic.MyFileIO;
 import appLaunchTwo.Logic.TableModelProgram;
+import appLaunchTwo.Test.ProcessLoad;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -93,7 +94,7 @@ public class FrameExecuting extends JFrame implements ActionListener, ListSelect
             grid.setConstraints(txtFileName,constraints);
             grid.setConstraints(txtFileExt,constraints);
             panelRight.add(createButton(grid,constraints,FIND,FIND));
-            panelRight.add(createButton(grid,constraints,FINISHPR,FINISHPR));
+      //      panelRight.add(createButton(grid,constraints,FINISHPR,FINISHPR));
             panelRight.add(createButton(grid,constraints,CLOSE,CLOSE));
 
 
@@ -113,10 +114,10 @@ public class FrameExecuting extends JFrame implements ActionListener, ListSelect
 
 
 
-            jFrame.add(panelBottom.add(new JLabel("  First ")));
+//            jFrame.add(panelBottom.add(new JLabel("  First ")));
             jFrame.add(panelLeft,BorderLayout.WEST);
             jFrame.add(panelRight,BorderLayout.EAST);
-            jFrame.add(panelTop.add(new JLabel("asf")));
+  //          jFrame.add(panelTop.add(new JLabel("asf")));
             jFrame.add(panelCenter,BorderLayout.CENTER);
 
 
@@ -193,11 +194,7 @@ public class FrameExecuting extends JFrame implements ActionListener, ListSelect
                 }
                 break;
             case FINISHPR:
-                try {
-                    finishProgram();
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
+               panelJList.add(loadProc());
                 break;
             case LAUNCH:
                 try {
@@ -212,11 +209,16 @@ public class FrameExecuting extends JFrame implements ActionListener, ListSelect
         }
     }
 
+    private JList loadProc() {
+        return (new ProcessLoad().funcProc());
+    }
+
     private void finishProgram() throws IOException {
         int strSel = tableProgram.getSelectedRow();
         String program = "cmd.exe";
         if(strSel != -1){
-            System.out.println(handlerProgram.findProgram(Integer.parseInt(tableProgram.getModel().getValueAt(strSel,0).toString())));
+    //
+            //        System.out.println(handlerProgram.findProgram(Integer.parseInt(tableProgram.getModel().getValueAt(strSel,0).toString())));
            Runtime.getRuntime().exec("taskkill /F /IM cmd.exe");
            // myappProcess.destroy();
             myappProcess.destroyForcibly();
@@ -332,7 +334,7 @@ public class FrameExecuting extends JFrame implements ActionListener, ListSelect
                     try {
                         findProgram(it.toString());
                     }catch(Exception e){
-                        System.out.println("Error "+ e);
+               //         System.out.println("Error "+ e);
                     }
                 if(it.getName().endsWith(ext) && !(it.getName().startsWith("uninstal") || (it.getParent().endsWith("updater")) || (it.getName().startsWith("updater") ))) {
                     txtFoundFiles.append(it + "\n");
@@ -363,7 +365,7 @@ public class FrameExecuting extends JFrame implements ActionListener, ListSelect
             }
 
         }catch (Exception e){
-            System.out.println("Error "+ e);
+          //  System.out.println("Error "+ e);
         }
    //     panelJList.add(new JButton("ADD to LIST?"));
     }

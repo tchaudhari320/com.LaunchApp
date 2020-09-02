@@ -6,6 +6,7 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 
 public class ReadDataFromHDD extends JFrame implements ActionListener, ListSelectionListener {
@@ -92,8 +93,8 @@ public class ReadDataFromHDD extends JFrame implements ActionListener, ListSelec
     }
 
     public static void main(String[] args) throws IOException {
-        System.out.println("Test Read Data!");
-        String dir = "c:\\Program Files (x86\\Notepad++\\)";
+     //   System.out.println("Test Read Data!");
+        String dir = "c:"+ File.separator+"Program Files (x86)"+File.separator;
    // for(String it : new FilePathSearch().searchFile(dir)){
      //   System.out.println(it);
         long timeStart = System.currentTimeMillis();

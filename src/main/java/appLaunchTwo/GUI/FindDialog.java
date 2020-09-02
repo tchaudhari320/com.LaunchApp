@@ -3,6 +3,7 @@ package appLaunchTwo.GUI;
 import appLaunchTwo.Classes.Program;
 import appLaunchTwo.Logic.HandlerProgram;
 import appLaunchTwo.Logic.MyFileIO;
+import appLaunchTwo.Test.DirContentNIO;
 import appLaunchTwo.Test.FilePathSearch;
 
 import javax.swing.*;
@@ -45,7 +46,7 @@ public class FindDialog extends JDialog implements ActionListener, ListSelection
          createBtnSC();
          add(createTxtArea());
          JPanel panelRight = new JPanel();
-        txtFileName.setText("C:\\Program Files (x86)\\");
+      txtFileName.setText("C:\\Program Files (x86)\\");
 
       //  getContentPane().setBackground(new Color(60,50,60));
         panelRight.add(txtFileName);
@@ -90,7 +91,7 @@ public class FindDialog extends JDialog implements ActionListener, ListSelection
     }
 
     private void createBtnSC() {
-        setTitle("ALL OBJECTS");
+        setTitle("TYPE THE FOLDER NAME MANUALLY!");
         JPanel panelBtn = new JPanel();
         panelBtn.setBounds(80,300,350,30);
         panelBtn.setLayout(new GridLayout(1,2));
@@ -152,16 +153,20 @@ public class FindDialog extends JDialog implements ActionListener, ListSelection
             case FIND:
                 List<String> stringList = new ArrayList<>();
 
-                if(txtProgram.getText().equals("")) {
+                if(txtProgram.getText().isEmpty()) {
                  //   System.out.println("Empty" + txtFileName.getText()+txtProgram.getText());
-                   //stringList = new FilePathSearch().searchDir("C:\\Program Files (x86)\\Adobe",1);
-                   stringList = new FilePathSearch().searchDir(txtFileName.getText().toString()+txtProgram.getText().toString(),1);
+                   stringList = new FilePathSearch().searchDir(txtFileName.getText().toString()+txtProgram.getText().toString(),'1');
+                 //  stringList = new DirContentNIO().readFiles();
 
                 }
                 else {
-                   // System.out.println("There is word here "+txtProgram.getText());
-                   stringList = new FilePathSearch().searchDir(txtFileName.getText().toString()+txtProgram.getText().toString());
-                   //stringList = new FilePathSearch().searchDir("C:\\Program Files (x86)\\Adobe");
+                  //  System.out.println("There is word here "+txtProgram.getText());
+                    try {
+                        stringList = new FilePathSearch().searchFile(txtFileName.getText().toString()+txtProgram.getText().toString());
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
+                    //stringList = new FilePathSearch().searchDir("C:\\Program Files (x86)\\Adobe");
 
                 }
                 txtProgram.setText("");
@@ -179,17 +184,23 @@ public class FindDialog extends JDialog implements ActionListener, ListSelection
 
     private void showinfoFunc() {
       List<String> listInfo = new ArrayList<>();
-        listInfo.add("https://overcoder.net/q/137598/java-%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%BE%D1%82-%D0%B8%D0%BC%D0%B5%D0%BD%D0%B8-%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%B0#:~:text=%D0%92%20%D0%BC%D0%B5%D0%BD%D1%8E%20%22%D0%9F%D1%83%D1%81%D0%BA%22%20%D0%B2%D0%B2%D0%B5%D0%B4%D0%B8%D1%82%D0%B5%20cmd,%D0%B1%D1%83%D0%B4%D0%B5%D1%82%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D1%82%D1%8C%20%D1%81%20%D0%BF%D1%80%D0%B0%D0%B2%D0%B0%D0%BC%D0%B8%20%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%B0.");
+       /* listInfo.add("https://overcoder.net/q/137598/java-%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%BE%D1%82-%D0%B8%D0%BC%D0%B5%D0%BD%D0%B8-%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%B0#:~:text=%D0%92%20%D0%BC%D0%B5%D0%BD%D1%8E%20%22%D0%9F%D1%83%D1%81%D0%BA%22%20%D0%B2%D0%B2%D0%B5%D0%B4%D0%B8%D1%82%D0%B5%20cmd,%D0%B1%D1%83%D0%B4%D0%B5%D1%82%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D1%82%D1%8C%20%D1%81%20%D0%BF%D1%80%D0%B0%D0%B2%D0%B0%D0%BC%D0%B8%20%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%B0.");
         listInfo.add("  Process myappProcess = Runtime.getRuntime().exec(\"powershell.exe Start-Process <program.exe> -verb RunAs\"");//Запуск cmd etc
         listInfo.add(" Process myappProcess = Runtime.getRuntime().exec(\"powershell.exe Start-Process notepad.exe -verb RunAs\");");// Запуск для jar.  Mot prove
+       */
+        listInfo.add("FOR TEST!");
         initTxtArea(listInfo);
 
     }
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
-        txtProgram.setText(listFindDialog.getSelectedValue().toString());
-
+        txtProgram.setText("");
+        try {
+            txtProgram.setText(listFindDialog.getSelectedValue().toString());
+        }catch(Exception er){
+     //       System.out.println("Error txtProgram "+er);
+        }
         }
     }
 

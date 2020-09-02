@@ -3,20 +3,54 @@ package appLaunchTwo.Logic;
 
 import appLaunchTwo.Classes.Program;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MyFileIO {
         private String pathFile;
         private String nameFile;
+        private File f;
 
-        public MyFileIO() {
-            pathFile = "C://Java/";
-            nameFile = "programs.txt";
+    public MyFileIO() {
+      //  if(System.getProperty("os.name").equals("Windows 10")) {
+
+            try {
+                f = new File("/Java/programs.txt");
+                if (f.createNewFile()) {
+                    //System.out.println("File created");
+                }
+                else {
+                    //  System.out.println("File already exists");
+                }
+            }
+            catch (Exception e) {
+                System.err.println(e);
+            }
+            System.out.println(f);
+   /*         Path path = Paths.get("D:/data/example.txt");
+            try {
+                String str = "Some write file Example";
+                byte[] bs = str.getBytes();
+                Path writtenFilePath = Files.write(path, bs);
+                System.out.println("Written content in file:\n"+ new String(Files.readAllBytes(writtenFilePath)));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+*/
+        //    pathFile ="/Java" + File.separator;
+            pathFile = f.toString();
+//            nameFile = "programs.txt";
+        //}else{
+/*
+            pathFile = File.separator + "Java" + File.separator;
+            nameFile = "programs";
+*/
+
+        //}
+
         }
 
         public MyFileIO(String pathFile, String nameFile) {
@@ -41,7 +75,7 @@ public class MyFileIO {
         }
 
         public void writeFile(List<Program> recordList) throws IOException {
-            FileWriter writer = new FileWriter(pathFile + nameFile);
+            FileWriter writer = new FileWriter(pathFile);
             for (Program it : recordList) {
                 writer.write(it.getId()  + "|" + it.getPath() + "|" + it.getName()+"|" + it.getDescription() );
                 writer.append('\n');
@@ -50,7 +84,7 @@ public class MyFileIO {
         }
 
         public List<Program> readFile() throws IOException {
-            FileReader reader = new FileReader(pathFile + nameFile);
+            FileReader reader = new FileReader(pathFile);
             List<Program> recordList = new ArrayList<>();
             Program record = new Program();
             int ch, flag = 0;

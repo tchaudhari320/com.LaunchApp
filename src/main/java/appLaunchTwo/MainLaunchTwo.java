@@ -18,14 +18,14 @@ import java.util.List;
 
 public class MainLaunchTwo {
     public static void main(String[] args) throws IOException {
-        System.out.println("HI! The Program for to launch Programs!");
+      //  System.out.println("HI! The App for to find exe files and to launch Programs!");
 
         List<Program> programs = new ArrayList<>();
 
          HandlerProgram handlerProgram = new HandlerProgram(programs);
         int i = 0;
         for (Program it : handlerProgram.getProgramList()) {
-             System.out.println("Program "+ (i++) + it);
+         //    System.out.println("Program "+ (i++) + it);
         }
 
         EventQueue.invokeLater(new Runnable() {

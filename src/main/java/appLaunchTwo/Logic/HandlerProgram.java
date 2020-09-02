@@ -105,7 +105,11 @@ public class HandlerProgram {
      * @version 1.0
      */
     public void searchFile(String dir ) throws IOException {
-        String ext = "exe";
+        String ext = "";
+        if(System.getProperty("os.name()") =="Windows")
+                ext = "exe";
+        else if(System.getProperty("os.name") == "Linux")
+            ext = "sh";
         File path = new File(dir);
         File[] files = path.listFiles();
         for(File it : files){
@@ -114,10 +118,10 @@ public class HandlerProgram {
                 try {
                     searchFile(it.toString());
                 }catch(Exception e){
-                    System.out.println("Error "+ e);
+               //     System.out.println("Error "+ e);
                 }
             if(it.getName().endsWith(ext) && !(it.getName().startsWith("uninstal") || (it.getParent().endsWith("updater")) || (it.getName().startsWith("updater") ))) {
-                System.out.println(it);
+           //     System.out.println(it);
               //  if(flag > 2) break;
             //    Process process = Runtime.getRuntime().exec(it.getAbsolutePath());
 
@@ -134,10 +138,10 @@ public class HandlerProgram {
             for(String it:files){
                 count++;
                 if(count % 50 == 0) {
-                    System.out.println("Press any key to continue...");
+               //     System.out.println("Press any key to continue...");
                     new Scanner(System.in).next();
                 }
-                    System.out.println(it);
+            //        System.out.println(it);
             }
 
     }
