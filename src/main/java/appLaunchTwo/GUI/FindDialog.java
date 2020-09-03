@@ -197,7 +197,13 @@ public class FindDialog extends JDialog implements ActionListener, ListSelection
     public void valueChanged(ListSelectionEvent e) {
         txtProgram.setText("");
         try {
-            txtProgram.setText(listFindDialog.getSelectedValue().toString());
+          //  listFindDialog.addListSelectionListener(new ListSelectionListener() {
+            //    public void valueChanged(ListSelectionEvent event) {
+              //      if (!event.getValueIsAdjusting()) {
+                        txtProgram.setText(listFindDialog.getSelectedValue().toString());
+     //               }
+       //         }
+       // });
         }catch(Exception er){
      //       System.out.println("Error txtProgram "+er);
         }

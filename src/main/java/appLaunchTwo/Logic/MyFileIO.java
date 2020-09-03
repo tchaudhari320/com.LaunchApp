@@ -10,14 +10,16 @@ import java.util.List;
 public class MyFileIO {
         private String pathFile;
         private String nameFile;
-        private File f;
+        private File file;
 
     public MyFileIO() {
       //  if(System.getProperty("os.name").equals("Windows 10")) {
 
             try {
-                f = new File("/Java/programs.txt");
-                if (f.createNewFile()) {
+                File myDir = new File("Java");
+              //  myDir.mkdir();
+                file = new File("programmms");
+                if (file.createNewFile()) {
                     //System.out.println("File created");
                 }
                 else {
@@ -25,9 +27,9 @@ public class MyFileIO {
                 }
             }
             catch (Exception e) {
-                System.err.println(e);
+               e.printStackTrace();
             }
-            System.out.println(f);
+            System.out.println(file);
    /*         Path path = Paths.get("D:/data/example.txt");
             try {
                 String str = "Some write file Example";
@@ -41,7 +43,7 @@ public class MyFileIO {
 
 */
         //    pathFile ="/Java" + File.separator;
-            pathFile = f.toString();
+            pathFile = file.toString();
 //            nameFile = "programs.txt";
         //}else{
 /*
