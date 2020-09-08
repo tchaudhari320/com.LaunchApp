@@ -19,9 +19,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.awt.Color.CYAN;
 import static java.awt.Color.LIGHT_GRAY;
-import static javax.print.attribute.standard.Chromaticity.COLOR;
 
 
 public class FrameExecuting extends JFrame implements ActionListener, ListSelectionListener {
@@ -66,7 +64,7 @@ public class FrameExecuting extends JFrame implements ActionListener, ListSelect
 
         JFrame jFrame = new JFrame();
 
-        jFrame.setTitle("                                                               THE APP FOR FIND AND LAUNCH PROGRAM");
+        jFrame.setTitle("THE APPLICATION FOR FINDING AND LAUNCHING PROGRAMS");
 
             jFrame.getContentPane().setBackground(Color.CYAN);
             JPanel panelLeft = new JPanel();

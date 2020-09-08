@@ -18,7 +18,7 @@ import java.util.List;
 
 public class MainLaunchTwo {
     public static void main(String[] args) throws IOException {
-      //  System.out.println("HI! The App for to find exe files and to launch Programs!");
+      //  System.out.println("HI! The App for to finding exe files and to launch Programs!");
 
         List<Program> programs = new ArrayList<>();
 
