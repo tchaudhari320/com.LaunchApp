@@ -16,9 +16,9 @@ public class MyFileIO {
       //  if(System.getProperty("os.name").equals("Windows 10")) {
 
             try {
-                File myDir = new File("Java");
+                File myDir = new File("C:/Java/");
               //  myDir.mkdir();
-                file = new File("programmms");
+                file = new File("C:/Java/programs.txt");
                 if (file.createNewFile()) {
                     //System.out.println("File created");
                 }

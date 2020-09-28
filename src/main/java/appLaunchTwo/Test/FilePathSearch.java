@@ -89,8 +89,8 @@ public class FilePathSearch {
     }
 
 
-    public List<String> searchFile(String dir ) throws IOException {
-        String ext = "exe";
+    public List<String> searchFile(String dir, String ext ) throws IOException {
+     //   String ext = "txt";
         File path = new File(dir);
         File[] files = path.listFiles();
 
@@ -98,7 +98,7 @@ public class FilePathSearch {
 
             if(it.isDirectory())
                 try {
-                    searchFile(it.toString());
+                    searchFile(it.toString(),ext);
                 }catch(Exception e){
           //          System.out.println("Error "+ e);
                 }

@@ -1,10 +1,8 @@
 <component name="ArtifactManager">
-  <artifact name="com.LaunchTwo:jar">
+  <artifact type="jar" name="com.LaunchTwo:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/com_LaunchTwo_jar</output-path>
-    <root id="root">
-      <element id="archive" name="com.LaunchTwo.jar">
-        <element id="module-output" name="com.LaunchTwo" />
-      </element>
+    <root id="archive" name="com.LaunchTwo.jar">
+      <element id="module-output" name="com.LaunchTwo" />
     </root>
   </artifact>
 </component>

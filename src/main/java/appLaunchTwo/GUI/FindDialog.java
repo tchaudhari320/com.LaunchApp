@@ -22,8 +22,9 @@ import java.util.List;
 public class FindDialog extends JDialog implements ActionListener, ListSelectionListener {
 
     private JTextField txtFileName = new JTextField();
+    private JTextField txtFileExt = new JTextField();
     private JTextField txtProgram = new JTextField();
-    private JTextArea txtFoundFiles = new JTextArea();
+    private JTextArea txtFileOut = new JTextArea();
     private JList<String> lists;
 
 
@@ -47,9 +48,13 @@ public class FindDialog extends JDialog implements ActionListener, ListSelection
          add(createTxtArea());
          JPanel panelRight = new JPanel();
       txtFileName.setText("C:\\Program Files (x86)\\");
+      txtFileExt.setText("exe");
+     // txtFileOut.setText("programmms");
 
       //  getContentPane().setBackground(new Color(60,50,60));
         panelRight.add(txtFileName);
+        panelRight.add(txtFileExt);
+      //  panelRight.add(txtFileOut);
 
         panelRight.add(txtProgram);
 
@@ -162,7 +167,7 @@ public class FindDialog extends JDialog implements ActionListener, ListSelection
                 else {
                   //  System.out.println("There is word here "+txtProgram.getText());
                     try {
-                        stringList = new FilePathSearch().searchFile(txtFileName.getText().toString()+txtProgram.getText().toString());
+                        stringList = new FilePathSearch().searchFile(txtFileName.getText().toString()+txtProgram.getText().toString(),txtFileExt.getText());
                     } catch (IOException ioException) {
                         ioException.printStackTrace();
                     }
