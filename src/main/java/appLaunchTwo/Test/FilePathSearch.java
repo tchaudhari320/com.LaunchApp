@@ -2,6 +2,7 @@ package appLaunchTwo.Test;
 
 import java.io.File;
 
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,7 @@ public class FilePathSearch {
     public List<String> searchDir(String dir, int n) {
         File path = new File(dir);
         OnlyExt onlyExt = new OnlyExt("exe");
-        String[] files = path.list(onlyExt);
+        String[] files = path.list((FilenameFilter) onlyExt);
 
     //    System.out.println("ALL DIRECTORIES and FILES ABSOLUTELY PATHS ");
 
