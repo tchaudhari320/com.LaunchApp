@@ -109,8 +109,13 @@ public class FrameExecuting extends JFrame implements ActionListener, ListSelect
 
         //jFrame.getContentPane().setBackground(Color.CYAN);
         tableProgram.setRowHeight(20);
-            tableProgram.setPreferredSize(new Dimension(300,400));
-            panelCenter.add(new JScrollPane(tableProgram),BorderLayout.NORTH);
+         //   tableProgram.setPreferredSize(new Dimension(300,400));
+            JScrollPane jScrollPane = new JScrollPane(tableProgram);
+             jScrollPane.setPreferredSize(new Dimension(700,300));
+             //jScrollPane.setMaximumSize(new Dimension(800,700));
+
+           // panelCenter.add(jScrollPane,BorderLayout.NORTH);
+            jFrame.add(jScrollPane,BorderLayout.NORTH);
 
 
             grid.setConstraints(panelBottom,constraints);
@@ -252,9 +257,16 @@ public class FrameExecuting extends JFrame implements ActionListener, ListSelect
            else if(programPath.endsWith("txt") ||programPath.endsWith("docx")||programPath.endsWith("doc")
                    ||programPath.endsWith("png")||programPath.endsWith("jpeg")||programPath.endsWith("jpg")  )
            {
-               Desktop desktop = Desktop.getDesktop();
+
+               try {
+                   Desktop desktop = Desktop.getDesktop();
 
                desktop.open(new File(programPath));
+
+               }catch(IOException e){
+                   System.out.println(e);
+                   JOptionPane.showMessageDialog(this,e);
+               }
                System.out.println(programPath+" Done.");
 
                System.out.println("File is jpg");
