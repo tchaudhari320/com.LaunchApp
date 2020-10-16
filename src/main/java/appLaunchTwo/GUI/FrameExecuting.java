@@ -10,6 +10,8 @@ import appLaunchTwo.Test.ProcessLoad;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -109,16 +111,44 @@ public class FrameExecuting extends JFrame implements ActionListener, ListSelect
 
         //jFrame.getContentPane().setBackground(Color.CYAN);
         tableProgram.setRowHeight(20);
+        tableProgram.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+       TableColumn tableColumn;
+    //    tableProgram.getColumnModel().getColumn(0).setPreferredWidth(10);
+      /* tableColumn.setPreferredWidth(10);*/
          //   tableProgram.setPreferredSize(new Dimension(300,400));
+
             JScrollPane jScrollPane = new JScrollPane(tableProgram);
              jScrollPane.setPreferredSize(new Dimension(700,300));
              //jScrollPane.setMaximumSize(new Dimension(800,700));
 
+
+            JMenuBar jMenuBar = new JMenuBar();
+            JMenu jMenu = new JMenu();
+            JMenuItem jMenuFile = new JMenuItem("File");
+            JMenuItem jMenuOpen = new JMenuItem("Open");
+            JMenuItem jMenuClose = new JMenuItem("Close");
+
+            jMenu.add(jMenuFile);
+            jMenu.add(jMenuOpen);
+            jMenu.add(jMenuClose);
+
+            jMenuBar.add(jMenuFile);
+            jMenuBar.add(jMenuOpen);
+            jMenuBar.add(jMenuClose);
+
+            jFrame.setJMenuBar(jMenuBar);
+
            // panelCenter.add(jScrollPane,BorderLayout.NORTH);
+
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override public void run() {
+//                tabWindow.addTab(...);
             jFrame.add(jScrollPane,BorderLayout.NORTH);
+            }
+        });
 
 
-            grid.setConstraints(panelBottom,constraints);
+        grid.setConstraints(panelBottom,constraints);
             panelBottom.add(panelJList);
             panelBottom.setBackground(Color.LIGHT_GRAY);
             panelLeft.setBackground(new Color(200,189, 190, 200));
@@ -282,7 +312,8 @@ public class FrameExecuting extends JFrame implements ActionListener, ListSelect
         List<Program> programList =  myFileIO.readFile();//handlerProgram.getProgramList();
 
         TableModelProgram tableModelProgram = new TableModelProgram(programList);
-        tableProgram.setModel(tableModelProgram);
+        //tableProgram.setModel(tableModelProgram);
+        tableProgram.setModel(new DefaultTableModel());
     }
 
     public void loadTableFromFile() throws IOException {

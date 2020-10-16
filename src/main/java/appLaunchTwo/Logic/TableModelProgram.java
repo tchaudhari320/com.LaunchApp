@@ -46,4 +46,9 @@ public class TableModelProgram extends AbstractTableModel {
                 return program.getDescription();
         }
     }
+    @Override
+    public boolean isCellEditable(int row, int column)
+    {
+        return false;
+    }
 }
